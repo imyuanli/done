@@ -22,7 +22,6 @@ const navs = [
 const Header = () => {
     const {data}: any = useSession() || {}
 
-    //
     const pathname = usePathname()
     const getActive = () => {
         const path = pathname.split('dashboard')[1]
@@ -30,10 +29,10 @@ const Header = () => {
     }
 
     return (
-        <div className={'px-2 pt-8 pb-1'}>
-            <div className={'flex justify-between px-8 mb-6'}>
-                <div className={'flex justify-center items-center space-x-4'}>
-                    <span className={'text-2xl font-mono'}>Done</span>
+        <div className={'px-8 pt-8 pb-1 h-[10vh]'}>
+            <div className={'flex justify-between mb-6'}>
+                <div className={'flex justify-center items-center'}>
+                    <span className={'text-2xl mr-4 font-mono hidden md:block'}>Done</span>
                     <ProjectMenu data={data}/>
                 </div>
                 <div className={'flex items-center space-x-4'}>
@@ -43,7 +42,7 @@ const Header = () => {
                     <ProfileMenu data={data}/>
                 </div>
             </div>
-            <div className={'pr-8'}>
+            <div>
                 {navs.map((item) => {
                     return (
                         <Link href={item.value}>

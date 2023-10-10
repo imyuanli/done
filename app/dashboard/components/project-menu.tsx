@@ -36,7 +36,7 @@ const ProjectMenu = ({data}: any) => {
                             <ChevronsUpDown size={16}/>
                         </Button>
                         :
-                        <Skeleton className={'w-48 h-5'}/>
+                        <Skeleton className={'w-48 h-9'}/>
                 }
             </PopoverTrigger>
             <PopoverContent className="min-w-[200px] w-full p-0">
