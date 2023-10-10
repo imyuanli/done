@@ -1,34 +1,259 @@
 import {getServerSession} from "next-auth";
-import LogoutButton from "@/app/dashboard/components/logout-button";
-import Image from "next/image";
 import {authOptions} from "@/app/api/auth/[...nextauth]/options";
-const Dashboard = async () => {
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {LayoutGrid, LayoutList, Plus} from "lucide-react";
 
-    const session:any = await getServerSession(authOptions)
-    console.log(session)
+const Dashboard = async () => {
+    const session: any = await getServerSession(authOptions)
 
     return (
-        <div>
-            dashboard
-            {
-                session?
-                    <div>
-                        <h1>{session.user.name}</h1>
-                        <h1>{session.user.email}</h1>
-                        <Image
-                            src={session.user.image}
-                            alt="Picture of the author"
-                            width={500}
-                            height={500}
-                        />
-                        <LogoutButton/>
-                    </div>
-                    :
-                    <div>暂无信息</div>
-            }
+        <div className={'bg-[#fafafa] h-full min-h-[90vh]'}>
+            <Tabs defaultValue="card" className={'container space-y-8'}>
+                <div className={'flex space-x-4 pt-8'}>
+                    <Input className={'bg-white'} placeholder={'Search...'}/>
+                    <TabsList>
+                        <TabsTrigger value="card">
+                            <LayoutGrid/>
+                        </TabsTrigger>
+                        <TabsTrigger value="list">
+                            <LayoutList/>
+                        </TabsTrigger>
+                    </TabsList>
+                    <Button className={'aspect-square'} size={"icon"}>
+                        <Plus/>
+                    </Button>
+                </div>
+                <TabsContent className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'} value="card">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+                <TabsContent className={'grid grid-cols-1 gap-8'} value="list">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Create project</CardTitle>
+                            <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            fasfsaf
+                        </CardContent>
+                        <CardFooter className="flex justify-between">
+                            <Button variant="outline">Cancel</Button>
+                            <Button>Deploy</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+            </Tabs>
         </div>
     );
 }
-
 
 export default Dashboard
