@@ -6,7 +6,6 @@ import {signIn} from "next-auth/react";
 import {useSearchParams} from "next/navigation";
 
 const GithubLogin = () => {
-
     const searchParams = useSearchParams()
     const callbackUrl: any = searchParams.get('callbackUrl')
 
