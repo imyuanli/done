@@ -1,8 +1,8 @@
 import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
 import Email from "next-auth/providers/email"
-import {PrismaClient} from "@prisma/client";
 import {PrismaAdapter} from "@next-auth/prisma-adapter";
+import prisma from "@/lib/prisma";
 
 declare global {
     namespace NodeJS {
@@ -15,8 +15,6 @@ declare global {
         }
     }
 }
-
-const prisma = new PrismaClient()
 
 export const authOptions: any = {
     adapter: PrismaAdapter(prisma),
