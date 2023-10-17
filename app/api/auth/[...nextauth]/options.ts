@@ -45,4 +45,13 @@ export const authOptions: any = {
     pages: {
         signIn: '/login',
     },
+    callbacks: {
+        async signIn({user}: any) {
+            if(!user.name){
+                user.name = 'done_' + user.email.split('@')[0]; // 设置用户名为邮箱的前缀
+                user.image = `https://api.dicebear.com/7.x/fun-emoji/svg?seed=${user.name}`; //设置头像为 Gravatar 头像
+            }
+            return true
+        },
+    }
 }

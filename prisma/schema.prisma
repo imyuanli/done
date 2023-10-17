@@ -19,13 +19,14 @@ model Account {
   token_type         String?
   scope              String?
   id_token           String?  @db.Text
+  refresh_token_expires_in Int?
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
-?biedong
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -36,7 +37,7 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?

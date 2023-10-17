@@ -3,16 +3,12 @@
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Mail} from "lucide-react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useToast} from "@/components/ui/use-toast";
 import {signIn} from "next-auth/react";
-import Login from "@/app/login/page";
 
 const EmailLogin = () => {
     const [email, setEmail] = useState('')
-    useEffect(() => {
-        console.log(email)
-    }, [email])
     const {toast} = useToast()
     const handleSendEmailVerification = () => {
         if (!email) {
@@ -49,7 +45,7 @@ const EmailLogin = () => {
             <Input
                 value={email}
                 onInput={(e: any) => setEmail(e.target.value)}
-                type={'text'}
+                type={'email'}
                 placeholder={'Email Address'}
             />
             <Button
