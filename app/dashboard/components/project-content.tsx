@@ -68,7 +68,7 @@ const ProjectContent = () => {
                     </Button>
                 </NewProject>
             </div>
-            <TabsContent className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4`} value="card">
+            <TabsContent className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`} value="card">
                 {
                     loading ?
                         arr.map((index: number) => (
@@ -126,7 +126,7 @@ const ProjectContent = () => {
                             <NotFount/>
                 }
             </TabsContent>
-            <TabsContent className={'grid grid-cols-1 gap-8 md:gap-4'} value="list">
+            <TabsContent className={'grid grid-cols-1 gap-8'} value="list">
                 {
                     loading ?
                         arr.map((index: number) => (
