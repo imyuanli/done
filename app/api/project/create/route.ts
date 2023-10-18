@@ -1,20 +1,21 @@
 import {ok} from "@/lib/utils";
+import {getToken} from "next-auth/jwt";
+import prisma from "@/lib/prisma";
 
 export async function POST(request: any) {
-    console.log(request?.session)
+    const token = await getToken({req:request})
     const {name, description, visibility} = await request.json()
-    console.log(name, description, visibility)
-    // const user = await prisma.project.create({
-    //     data: {
-    //         name,
-    //         description,
-    //         visibility,
-    //         // createdBy: {
-    //         //     connect: { id: userId },
-    //         // },
-    //     },
-    // })
+    const project = await prisma.project.create({
+        data: {
+            name,
+            description,
+            visibility,
+            createdBy: {
+                connect: { id: token?.sub },
+            },
+        },
+    })
     return ok({
-        projectId: "123"
+        projectName: project.name
     })
 }

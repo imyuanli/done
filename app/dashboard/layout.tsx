@@ -2,8 +2,6 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import Header from "@/app/dashboard/components/header";
 import React from "react";
-import {Dialog} from "@/components/ui/dialog";
-import NewProject from "@/app/dashboard/components/new-project";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -20,13 +18,10 @@ export default async function DashboardLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <Dialog>
-            <Header/>
-            <main>
-                {children}
-                <NewProject/>
-            </main>
-        </Dialog>
+        <Header/>
+        <main>
+            {children}
+        </main>
         </body>
         </html>
     )

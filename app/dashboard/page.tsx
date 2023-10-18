@@ -5,13 +5,10 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {LayoutGrid, LayoutList, Plus} from "lucide-react";
-import {
-    DialogTrigger
-} from "@/components/ui/dialog";
 import React from "react";
+import NewProject from "@/app/dashboard/components/new-project";
 
 const Dashboard = async () => {
-    const session: any = await getServerSession(authOptions)
 
     return (
         <div className={'bg-[#fafafa] h-full min-h-[90vh]'}>
@@ -26,11 +23,11 @@ const Dashboard = async () => {
                             <LayoutList/>
                         </TabsTrigger>
                     </TabsList>
-                    <DialogTrigger>
+                    <NewProject>
                         <Button className={'aspect-square'} size={"icon"}>
                             <Plus/>
                         </Button>
-                    </DialogTrigger>
+                    </NewProject>
                 </div>
                 <TabsContent className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'} value="card">
                     <Card>
