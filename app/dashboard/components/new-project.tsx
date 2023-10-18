@@ -1,5 +1,3 @@
-'use client'
-
 import {
     Dialog,
     DialogContent,
@@ -18,25 +16,16 @@ import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import useSWRMutation from "swr/mutation";
 import {toast} from "@/components/ui/use-toast";
 import Loading from "@/components/loading";
+import {useRequest} from "ahooks";
+import {create_project} from "@/service";
 
 const FormSchema = z.object({
     name: z.string().min(1, {message: '项目名称不能为空'}),
     description: z.string(),
     visibility: z.enum(['public', 'private'])
 })
-
-const sendRequest = async (url: string, {arg}: any) => {
-    return await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(arg)
-    }).then(res => res.json())
-}
 
 const NewProject = ({children}: any) => {
     const [open, setOpen] = useState(false)
@@ -48,14 +37,16 @@ const NewProject = ({children}: any) => {
             visibility: 'public',
         }
     })
-    const {trigger, isMutating}: any = useSWRMutation('/api/project/create', sendRequest)
+    const {loading, runAsync} = useRequest(create_project, {manual: true})
+
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-        const res = await trigger(data)
+        const res = await runAsync(data)
         if (res.data) {
             toast({
                 title: `${res.data.projectName}创建成功`,
             })
             setOpen(false)
+            form.reset()
         }
     }
 
@@ -139,7 +130,7 @@ const NewProject = ({children}: any) => {
                                 取消
                             </Button>
                             <Button type={"submit"}>
-                                {isMutating ? <Loading/> : '创建'}
+                                {loading ? <Loading/> : '创建'}
                             </Button>
                         </DialogFooter>
                     </form>
