@@ -43,7 +43,7 @@ const NewProject = ({children}: any) => {
         const res = await runAsync(data)
         if (res.data) {
             toast({
-                title: `${res.data.projectName}创建成功`,
+                title: `${res.data}创建成功`,
             })
             setOpen(false)
             form.reset()

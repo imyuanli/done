@@ -11,7 +11,8 @@ const request = async (url: string, method: string, payload: any) => {
     } else {
         res = await fetch(url)
     }
-    return await res.json()
+    const {data} = await res.json()
+    return data
 }
 
 request.get = (url: string) => request(url, 'GET', "")

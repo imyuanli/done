@@ -15,7 +15,5 @@ export async function POST(request: any) {
             },
         },
     })
-    return ok({
-        projectName: project.name
-    })
+    return ok(project.name)
 }
