@@ -18,10 +18,12 @@ export default async function DashboardLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <Header/>
-        <main>
-            {children}
-        </main>
+        <div className={'h-screen flex flex-col'}>
+            <Header/>
+            <main className={'flex-1'}>
+                {children}
+            </main>
+        </div>
         </body>
         </html>
     )

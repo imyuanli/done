@@ -13,9 +13,9 @@ import Image from "next/image";
 import Link from "next/link";
 import {Home, Moon, Settings, Sun, SunMoon} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {Skeleton} from "@/components/ui/skeleton";
 import {useTheme} from "next-themes";
 import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
+import {Skeleton} from "antd";
 
 const Icon = ({icon}: any) => React.createElement(icon, {size: 16})
 
@@ -99,7 +99,7 @@ const ProfileMenu = ({data}: any) => {
                         </DropdownMenuContent>
                     </DropdownMenu>
                     :
-                    <Skeleton className="h-9 w-9 rounded-full"/>
+                    <Skeleton.Avatar size={'large'} active/>
             }
         </>
     )

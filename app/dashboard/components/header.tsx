@@ -29,16 +29,16 @@ const Header = () => {
     }
 
     return (
-        <div className={'px-8 pt-8 pb-1 h-[10vh]'}>
+        <div className={'px-8 pt-8 pb-1'}>
             <div className={'flex justify-between mb-6'}>
                 <div className={'flex justify-center items-center'}>
                     <span className={'text-2xl mr-4 font-mono hidden md:block'}>Done</span>
-                    <ProjectMenu data={data}/>
+                    {/*<ProjectMenu data={data}/>*/}
                 </div>
                 <div className={'flex items-center space-x-4'}>
-                    <Button variant={'outline'}>
-                        FeedBack
-                    </Button>
+                    {/*<Button variant={'outline'}>*/}
+                    {/*    FeedBack*/}
+                    {/*</Button>*/}
                     <ProfileMenu data={data}/>
                 </div>
             </div>

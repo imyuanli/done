@@ -16,9 +16,9 @@ const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const NotFount = () => {
     return (
-        <div className={'col-span-3 flex flex-col justify-center items-center space-y-4'}>
+        <div className={'col-span-3 flex flex-col justify-center items-center space-y-4 mt-24'}>
             <div>
-                <Archive size={48} />
+                <Archive size={48}/>
             </div>
             <div className={'text-xl font-semibold'}>暂无项目</div>
             <div className={'text-base'}>
@@ -68,7 +68,7 @@ const ProjectContent = () => {
                     </Button>
                 </NewProject>
             </div>
-            <TabsContent className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`} value="card">
+            <TabsContent className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4`} value="card">
                 {
                     loading ?
                         arr.map((index: number) => (
@@ -126,7 +126,7 @@ const ProjectContent = () => {
                             <NotFount/>
                 }
             </TabsContent>
-            <TabsContent className={'grid grid-cols-1 gap-8'} value="list">
+            <TabsContent className={'grid grid-cols-1 gap-8 md:gap-4'} value="list">
                 {
                     loading ?
                         arr.map((index: number) => (
