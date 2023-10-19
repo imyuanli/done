@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import Header from "@/app/dashboard/components/header";
 import React from "react";
+import {Separator} from "@/components/ui/separator";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -18,9 +19,12 @@ export default async function DashboardLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <div className={'h-screen flex flex-col'}>
-            <Header/>
-            <main className={'flex-1'}>
+        <div className={'h-screen flex flex-col pt-8'}>
+            <div className={'px-4 md:px-12'}>
+                <Header/>
+            </div>
+            <Separator/>
+            <main className={'container flex-1 py-8 px-4 md:px-12'}>
                 {children}
             </main>
         </div>

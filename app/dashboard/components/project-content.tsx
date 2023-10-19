@@ -45,8 +45,8 @@ const ProjectContent = () => {
     )
 
     return (
-        <Tabs defaultValue="card" className={'container space-y-8'}>
-            <div className={'flex space-x-4 pt-8'}>
+        <Tabs defaultValue="card" className={'space-y-8'}>
+            <div className={'flex space-x-4'}>
                 <Input
                     className={'bg-white'}
                     placeholder={'Search...'}
