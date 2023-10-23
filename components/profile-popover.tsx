@@ -1,7 +1,3 @@
-'use client'
-
-import React from "react";
-import {signOut} from "next-auth/react";
 import {
     DropdownMenu,
     DropdownMenuContent, DropdownMenuItem,
@@ -13,38 +9,13 @@ import Image from "next/image";
 import Link from "next/link";
 import {Home, Moon, Settings, Sun, SunMoon} from "lucide-react";
 import {Button} from "@/components/ui/button";
+import {signOut} from "next-auth/react";
+import {Skeleton} from "antd";
+import React from "react";
 import {useTheme} from "next-themes";
 import {Select, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
-import {Skeleton} from "antd";
 
-const Icon = ({icon}: any) => React.createElement(icon, {size: 16})
-
-const ThemeSelect = () => {
-    const {theme, setTheme} = useTheme()
-
-    return (
-        <Select value={theme} onValueChange={(value) => setTheme(value)}>
-            <SelectTrigger>
-                {theme == 'light' && <Icon icon={Sun}/>}
-                {theme == 'dark' && <Icon icon={Moon}/>}
-                {theme == 'system' && <Icon icon={SunMoon}/>}
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="light">
-                    Light
-                </SelectItem>
-                <SelectItem value="dark">
-                    Dark
-                </SelectItem>
-                <SelectItem value="system">
-                    System
-                </SelectItem>
-            </SelectContent>
-        </Select>
-    )
-}
-
-const ProfileMenu = ({data}: any) => {
+const ProfilePopover = ({data}: any) => {
     return (
         <>
             {
@@ -102,7 +73,36 @@ const ProfileMenu = ({data}: any) => {
                     <Skeleton.Avatar size={'large'} active/>
             }
         </>
+    );
+}
+
+const Icon = ({icon}: any) => React.createElement(icon, {size: 16})
+
+const ThemeSelect = () => {
+    const {theme, setTheme} = useTheme()
+
+    return (
+        <Select value={theme} onValueChange={(value) => setTheme(value)}>
+            <SelectTrigger>
+                {theme == 'light' && <Icon icon={Sun}/>}
+                {theme == 'dark' && <Icon icon={Moon}/>}
+                {theme == 'system' && <Icon icon={SunMoon}/>}
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="light">
+                    Light
+                </SelectItem>
+                <SelectItem value="dark">
+                    Dark
+                </SelectItem>
+                <SelectItem value="system">
+                    System
+                </SelectItem>
+            </SelectContent>
+        </Select>
     )
 }
 
-export default ProfileMenu
+
+export default ProfilePopover
+
