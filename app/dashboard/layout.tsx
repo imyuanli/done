@@ -46,7 +46,7 @@ export default async function DashboardLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <div className={'h-screen flex flex-col pt-8'}>
+        <div className={'h-screen flex flex-col'}>
             <Header
                 navs={navs}
                 parentRoute={'dashboard'}

@@ -1,9 +1,9 @@
 import React from "react";
-import ProjectContent from "@/app/dashboard/components/project-content";
+import Section from "@/app/dashboard/projects/client/section";
 
 const Projects = async () => {
     return (
-        <ProjectContent/>
+        <Section/>
     );
 }
 
