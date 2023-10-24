@@ -7,11 +7,11 @@ import {useDebounce, useRequest, useSetState} from "ahooks";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Archive, CalendarDays, LayoutGrid, LayoutList, Plus} from "lucide-react";
-import NewProject from "@/app/dashboard/components/new-project";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Skeleton} from "antd";
 import {Badge} from "@/components/ui/badge";
 import {get_project_list} from "@/service";
+import CreateProject from "@/components/create-project";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 const NotFount = () => {
@@ -24,12 +24,12 @@ const NotFount = () => {
             <div className={'text-base'}>
                 开始创建你的第一个项目
             </div>
-            <NewProject>
+            <CreateProject>
                 <Button>
                     <Plus size={20}/>
                     <span>创建项目</span>
                 </Button>
-            </NewProject>
+            </CreateProject>
         </div>
     )
 }
@@ -118,11 +118,11 @@ const Section = () => {
                             <LayoutList/>
                         </TabsTrigger>
                     </TabsList>
-                    <NewProject>
+                    <CreateProject>
                         <Button className={'aspect-square'} size={"icon"}>
                             <Plus/>
                         </Button>
-                    </NewProject>
+                    </CreateProject>
                 </div>
                 <TabsContent className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`} value="card">
                     {

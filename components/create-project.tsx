@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Dialog,
     DialogContent,
@@ -16,10 +18,11 @@ import {useForm} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import {toast} from "@/components/ui/use-toast";
 import Loading from "@/components/loading";
 import {useRequest} from "ahooks";
 import {create_project} from "@/service";
+import {useRouter} from "next/navigation";
+import {toast} from "@/components/ui/use-toast";
 
 const FormSchema = z.object({
     name: z.string().min(1, {message: '项目名称不能为空'}),
@@ -27,7 +30,7 @@ const FormSchema = z.object({
     visibility: z.enum(['public', 'private'])
 })
 
-const NewProject = ({children}: any) => {
+const CreateProject = ({children}: any) => {
     const [open, setOpen] = useState(false)
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -38,15 +41,17 @@ const NewProject = ({children}: any) => {
         }
     })
     const {loading, runAsync} = useRequest(create_project, {manual: true})
+    const router = useRouter()
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
         const res = await runAsync(data)
-        if (res.data) {
+        if (res) {
             toast({
-                title: `${res.data}创建成功`,
-            })
+                title: res.name + '创建成功',
+            });
             setOpen(false)
             form.reset()
+            router.push('/p/' + res.id)
         }
     }
 
@@ -140,4 +145,4 @@ const NewProject = ({children}: any) => {
     );
 }
 
-export default NewProject
+export default CreateProject
