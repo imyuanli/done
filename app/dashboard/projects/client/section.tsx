@@ -8,7 +8,7 @@ import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {
     Archive,
-    CalendarDays,
+    CalendarDays, ExternalLink,
     LayoutGrid,
     LayoutList,
     LockKeyhole,
@@ -24,6 +24,7 @@ import ProjectAvatar from "@/components/project-avatar";
 import dayjs from "dayjs";
 import OperateMenu from "@/app/dashboard/projects/client/operate-menu";
 import RatePopover from "@/app/dashboard/projects/client/rate-popover";
+import Link from "next/link";
 
 const arr = [1, 2, 3, 4, 5, 6]
 const NotFount = () => {
@@ -46,8 +47,8 @@ const NotFount = () => {
     )
 }
 
-const MoreMenu=()=>{
-    return(
+const MoreMenu = () => {
+    return (
         <div className={'space-x-2'}>
             <RatePopover/>
             <OperateMenu/>
@@ -177,36 +178,51 @@ const Section = () => {
                             projects.length > 0 ?
                                 projects.map((item: any, index: number) => {
                                     return (
-                                        <Card className={'hover:shadow-lg duration-200 cursor-pointer'} key={index}>
-                                            <CardHeader className={'flex flex-row items-center space-x-4 space-y-0'}>
-                                                <ProjectAvatar icon={item.icon} name={item.name}/>
-                                                <div className={'flex-1'}>
-                                                    <CardTitle className={'flex items-center justify-between'}>
-                                                        <span className={'mr-1'}>{item.name}</span>
-                                                        <Badge className={'rounded-full mr-1'} variant={'outline'}>
-                                                            {
-                                                                item.visibility == 'public' ?
-                                                                    <UnlockKeyhole size={16}/>
-                                                                    :
-                                                                    <LockKeyhole size={16}/>
-                                                            }
-                                                        </Badge>
-                                                    </CardTitle>
-                                                    <CardDescription>{item.description}</CardDescription>
-                                                </div>
-                                            </CardHeader>
-                                            <CardContent>
-                                                这个地方打算展示项目的一些信息 比如 项目创建者 项目创建时间 项目最后更新时间
-                                                项目的一些标签
-                                            </CardContent>
-                                            <CardFooter className="flex justify-between">
-                                                <div className={'flex justify-center items-center text-sm'}>
-                                                    <CalendarDays size={16} className={'mr-1'}/>
-                                                    {dayjs(item?.createdAt).format('YYYY-MM-DD')}
-                                                </div>
-                                                <MoreMenu/>
-                                            </CardFooter>
-                                        </Card>
+                                        <div className={'relative group'}>
+                                            <Link href={`/p/${item.id}`}>
+                                                <Card className={'hover:shadow-lg duration-200'}
+                                                      key={index}>
+                                                    <CardHeader
+                                                        className={'flex flex-row items-center space-x-4 space-y-0'}>
+                                                        <ProjectAvatar icon={item.icon} name={item.name}/>
+                                                        <div className={'flex-1'}>
+                                                            <CardTitle className={'flex items-center justify-between'}>
+                                                                <span className={'mr-1'}>{item.name}</span>
+                                                                <Badge className={'rounded-full mr-1'}
+                                                                       variant={'outline'}>
+                                                                    {
+                                                                        item.visibility == 'public' ?
+                                                                            <UnlockKeyhole size={16}/>
+                                                                            :
+                                                                            <LockKeyhole size={16}/>
+                                                                    }
+                                                                </Badge>
+                                                            </CardTitle>
+                                                            <CardDescription>{item.description}</CardDescription>
+                                                        </div>
+                                                    </CardHeader>
+                                                    <CardContent>
+                                                        这个地方打算展示项目的一些信息 比如 项目创建者 项目创建时间
+                                                        项目最后更新时间
+                                                        项目的一些标签
+                                                    </CardContent>
+                                                    <CardFooter className="flex justify-between">
+                                                        <div className={'flex justify-center items-center text-sm'}>
+                                                            <CalendarDays size={16} className={'mr-1'}/>
+                                                            {dayjs(item?.createdAt).format('YYYY-MM-DD')}
+                                                        </div>
+                                                        <MoreMenu/>
+                                                    </CardFooter>
+                                                </Card>
+                                            </Link>
+                                            <div className={'absolute -right-2 -top-2 hidden group-hover:block'}>
+                                                <Link href={`/p/${item.id}`} target={'_blank'}>
+                                                    <Button className={'rounded-full'} size={'icon'}>
+                                                        <ExternalLink size={20}/>
+                                                    </Button>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     )
                                 })
                                 :
