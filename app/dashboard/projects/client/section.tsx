@@ -6,14 +6,26 @@ import Title from "@/components/title";
 import {useDebounce, useRequest, useSetState} from "ahooks";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {Archive, CalendarDays, LayoutGrid, LayoutList, Plus} from "lucide-react";
+import {
+    Archive,
+    CalendarDays,
+    LayoutGrid,
+    LayoutList,
+    LockKeyhole,
+    Plus,
+    UnlockKeyhole
+} from "lucide-react";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Skeleton} from "antd";
 import {Badge} from "@/components/ui/badge";
 import {get_project_list} from "@/service";
 import CreateProject from "@/components/create-project";
+import ProjectAvatar from "@/components/project-avatar";
+import dayjs from "dayjs";
+import OperateMenu from "@/app/dashboard/projects/client/operate-menu";
+import RatePopover from "@/app/dashboard/projects/client/rate-popover";
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+const arr = [1, 2, 3, 4, 5, 6]
 const NotFount = () => {
     return (
         <div className={'col-span-3 flex flex-col justify-center items-center space-y-4 mt-24'}>
@@ -30,6 +42,15 @@ const NotFount = () => {
                     <span>创建项目</span>
                 </Button>
             </CreateProject>
+        </div>
+    )
+}
+
+const MoreMenu=()=>{
+    return(
+        <div className={'space-x-2'}>
+            <RatePopover/>
+            <OperateMenu/>
         </div>
     )
 }
@@ -68,7 +89,8 @@ const Section = () => {
     //如果data变化
     useEffect(() => {
         if (data?.projects) {
-            const res = ()=>{}
+            const res = () => {
+            }
             setState({
                 projects: Array.from(new Set([...projects, ...data?.projects]))
             })
@@ -99,7 +121,7 @@ const Section = () => {
                     </TabsTrigger>
                 </TabsList>
             </Title>
-            <Tabs defaultValue="card" className={'space-y-8'}>
+            <Tabs defaultValue="list" className={'space-y-8'}>
                 <div className={'flex space-x-4'}>
                     <Input
                         className={'bg-white'}
@@ -155,28 +177,34 @@ const Section = () => {
                             projects.length > 0 ?
                                 projects.map((item: any, index: number) => {
                                     return (
-                                        <Card key={index}>
-                                            <CardHeader>
-                                                <CardTitle>
-                                                    <span className={'mr-1'}>{item.name}</span>
-                                                    <Badge className={'rounded-full mr-1'} variant={'outline'}>
-                                                        {item.visibility}
-                                                    </Badge>
-                                                    <Badge className={'rounded-full'}>
-                                                        {item.status}
-                                                    </Badge>
-                                                </CardTitle>
-                                                <CardDescription>{item.description}</CardDescription>
+                                        <Card className={'hover:shadow-lg duration-200 cursor-pointer'} key={index}>
+                                            <CardHeader className={'flex flex-row items-center space-x-4 space-y-0'}>
+                                                <ProjectAvatar icon={item.icon} name={item.name}/>
+                                                <div className={'flex-1'}>
+                                                    <CardTitle className={'flex items-center justify-between'}>
+                                                        <span className={'mr-1'}>{item.name}</span>
+                                                        <Badge className={'rounded-full mr-1'} variant={'outline'}>
+                                                            {
+                                                                item.visibility == 'public' ?
+                                                                    <UnlockKeyhole size={16}/>
+                                                                    :
+                                                                    <LockKeyhole size={16}/>
+                                                            }
+                                                        </Badge>
+                                                    </CardTitle>
+                                                    <CardDescription>{item.description}</CardDescription>
+                                                </div>
                                             </CardHeader>
                                             <CardContent>
-                                                fasfsaf
+                                                这个地方打算展示项目的一些信息 比如 项目创建者 项目创建时间 项目最后更新时间
+                                                项目的一些标签
                                             </CardContent>
                                             <CardFooter className="flex justify-between">
-                                                <div>
-                                                    <CalendarDays/>
-                                                    {item?.createdAt}
+                                                <div className={'flex justify-center items-center text-sm'}>
+                                                    <CalendarDays size={16} className={'mr-1'}/>
+                                                    {dayjs(item?.createdAt).format('YYYY-MM-DD')}
                                                 </div>
-                                                <Button>Deploy</Button>
+                                                <MoreMenu/>
                                             </CardFooter>
                                         </Card>
                                     )
@@ -189,24 +217,24 @@ const Section = () => {
                     {
                         loading ?
                             arr.map((index: number) => (
-                                <Card key={index}>
-                                    <CardHeader>
-                                        <CardTitle>
-                                            <div className={'flex justify-between items-center'}>
-                                                <div className={'flex  items-center'}>
-                                                    <Skeleton.Avatar className={'mr-2'} active/>
-                                                    <Skeleton.Input size={'small'} active/>
-                                                </div>
+                                <Card className={'flex justify-center items-center'} key={index}>
+                                    <CardHeader className={'p-4 flex-1 flex flex-row items-center space-x-4 space-y-0'}>
+                                        <Skeleton.Avatar className={'mr-2'} active/>
+                                        <div className={'flex-1'}>
+                                            <CardTitle className={'flex items-center mb-1'}>
+                                                <Skeleton.Input className={'mr-1'} size={'small'} active/>
                                                 <Skeleton.Button size={'small'} active/>
-                                            </div>
-                                        </CardTitle>
+                                            </CardTitle>
+                                            <CardDescription>
+                                                <Skeleton.Input size={'small'} block active/>
+                                            </CardDescription>
+                                        </div>
                                     </CardHeader>
-                                    <CardContent className={'space-y-1'}>
-                                        <Skeleton.Input size={'small'} active/>
+                                    <CardContent className={'p-4 flex-1 space-y-1'}>
                                         <Skeleton.Input size={'small'} block active/>
                                         <Skeleton.Input size={'small'} block active/>
                                     </CardContent>
-                                    <CardFooter className="flex justify-between">
+                                    <CardFooter className="p-4 flex-1 flex justify-end items-center space-x-4">
                                         <Skeleton.Button size={'small'} active/>
                                         <Skeleton.Button size={'small'} active/>
                                     </CardFooter>
@@ -216,22 +244,30 @@ const Section = () => {
                             projects.length > 0 ?
                                 projects.map((item: any, index: number) => {
                                     return (
-                                        <Card key={index}>
-                                            <CardHeader>
-                                                <CardTitle>
-                                                    <span className={'mr-1'}>{item.name}</span>
-                                                    <Badge className={'rounded-full'} variant={'outline'}>
-                                                        {item.visibility}
-                                                    </Badge>
-                                                </CardTitle>
-                                                <CardDescription>{item.description}</CardDescription>
+                                        <Card className={'flex justify-center items-center'} key={index}>
+                                            <CardHeader
+                                                className={'p-4 flex-1 flex flex-row items-center space-x-4 space-y-0'}>
+                                                <ProjectAvatar icon={item.icon} name={item.name}/>
+                                                <div className={'flex-1'}>
+                                                    <CardTitle className={'flex items-center'}>
+                                                        <span className={'mr-2'}>{item.name}</span>
+                                                        <Badge className={'rounded-full'} variant={'outline'}>
+                                                            {item.visibility}
+                                                        </Badge>
+                                                    </CardTitle>
+                                                    <CardDescription>{item.description}</CardDescription>
+                                                </div>
                                             </CardHeader>
-                                            <CardContent>
-                                                {item.description}
+                                            <CardContent className={'p-4 flex-1'}>
+                                                这个地方打算展示项目的一些信息 比如 项目创建者 项目创建时间 项目最后更新时间
+                                                项目的一些标签
                                             </CardContent>
-                                            <CardFooter className="flex justify-between">
-                                                <Button variant="outline">Cancel</Button>
-                                                <Button>Deploy</Button>
+                                            <CardFooter className="p-4 flex-1 flex justify-end items-center space-x-4">
+                                                <div className={'flex justify-center items-center text-sm'}>
+                                                    <CalendarDays size={16} className={'mr-1'}/>
+                                                    {dayjs(item?.createdAt).format('YYYY-MM-DD')}
+                                                </div>
+                                                <MoreMenu/>
                                             </CardFooter>
                                         </Card>
                                     )
