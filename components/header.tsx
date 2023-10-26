@@ -14,10 +14,7 @@ import ShadowLink from "@/components/shadow-link";
 export default function Header({navs, parentRoute}: any) {
     const {data}: any = useSession() || {}
     const pathname = usePathname()
-    const getActive = () => {
-        const path = pathname.split(parentRoute)[1]
-        return navs.find((item: any) => item.value == (path ? path : '/'))?.value
-    }
+
     return (
         <div className={'py-4 px-4 md:px-8'}>
             <div className={'flex justify-between mb-4'}>
@@ -53,10 +50,10 @@ export default function Header({navs, parentRoute}: any) {
             </div>
             <div className={'flex justify-start items-center space-x-8'}>
                 {navs.map((item: any) => {
-                    const href = `/${parentRoute}${item.value}`
+                    const href = item.value ? `${parentRoute}/${item.value}` : parentRoute
                     return (
                         <ShadowLink
-                            active={getActive() === item.value}
+                            active={pathname === href}
                             href={href}
                             name={item.name}
                         />

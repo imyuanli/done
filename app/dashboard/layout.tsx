@@ -13,28 +13,24 @@ export const metadata: Metadata = {
 
 const navs = [
     {
-        name: 'Dashboard',
-        value: '/'
+        name: '首页',
+        value: ''
     },
     {
-        name: 'Projects',
-        value: '/projects'
+        name: '项目',
+        value: 'projects'
     },
     {
-        name: 'Todos',
-        value: '/teams'
+        name: '代办',
+        value: 'todo'
     },
     {
-        name: 'Calendar',
-        value: '/calendar'
+        name: '日历',
+        value: 'calendar'
     },
     {
-        name: 'Contacts',
-        value: '/contacts'
-    },
-    {
-        name: 'Settings',
-        value: '/settings'
+        name: '设置',
+        value: 'settings'
     }
 ]
 
@@ -49,7 +45,7 @@ export default async function DashboardLayout({
         <div className={'h-screen flex flex-col'}>
             <Header
                 navs={navs}
-                parentRoute={'dashboard'}
+                parentRoute={'/dashboard'}
             />
             <Separator/>
             <main className={'container flex-1 py-8 px-4 md:px-12'}>
