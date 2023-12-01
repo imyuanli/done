@@ -1,4 +1,5 @@
-import AddModule from "@/components/dashboard/add-module";
+import AddModule from "@/app/dashboard/add-module";
+import DragCard from "@/app/dashboard/drag-card";
 
 const Dashboard = () => {
     return (
@@ -9,6 +10,9 @@ const Dashboard = () => {
                         Dashboard
                     </div>
                     <AddModule/>
+                </div>
+                <div>
+                    <DragCard/>
                 </div>
             </div>
         </div>
