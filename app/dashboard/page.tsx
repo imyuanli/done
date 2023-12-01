@@ -3,17 +3,15 @@ import DragCard from "@/app/dashboard/drag-card";
 
 const Dashboard = () => {
     return (
-        <div className={'min-h-screen h-full py-4'}>
-            <div className={'px-4 md:px-8'}>
-                <div className={'flex justify-between'}>
-                    <div>
-                        Dashboard
-                    </div>
-                    <AddModule/>
-                </div>
+        <div className={'px-4 md:px-8'}>
+            <div className={'flex justify-between'}>
                 <div>
-                    <DragCard/>
+                    Dashboard
                 </div>
+                <AddModule/>
+            </div>
+            <div>
+                <DragCard/>
             </div>
         </div>
     )

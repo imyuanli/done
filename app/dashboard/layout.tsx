@@ -13,10 +13,12 @@ const routers = [
 
 const DashboardLayout = ({children}: { children: React.ReactNode }) => {
     return (
-        <>
+        <div className={'min-h-screen h-full'}>
             <Header routers={routers}/>
-            {children}
-        </>
+            <main className={'py-4'}>
+                {children}
+            </main>
+        </div>
     );
 }
 
